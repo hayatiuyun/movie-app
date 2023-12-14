@@ -1,25 +1,55 @@
-# Movie Site Application
+
+# Movie Site Front-end
 
 
-## Getting started
+This is the front-end repository for the Movie Site website. It is built using Next.js, Material-UI, and Tailwind CSS.
 
-Selamat datang di Movie Site Application. pengembangan front end menggunakan tech stack sebagai berikut:
+## Tech Stack
 
-- Next JS (ver. 13.4.19)
-- material UI (ver. 5.14.9)
-- tailwind CSS (ver. 3.3.3)
-- Husky (ver. 8.0.3)
-- Jest (ver 29.7.0)
-- @testing-library/react (ver. 14.0.0)
-- @testing-library/jest-dom (ver. 6.1.3)
+- [Next.js](https://nextjs.org/) (v14.0.4)
+- [Material-UI](https://mui.com/) (v5.15.0)
+- [Tailwind CSS](https://tailwindcss.com/) (v3.3.6)
+- [Husky](https://github.com/typicode/husky) (v8.0.3)
+- [Jest](https://jestjs.io/) (v29.7.0)
+- [@testing-library/react](https://testing-library.com/react) (v14.1.2)
+- [@testing-library/jest-dom](https://testing-library.com/docs/queries/about/) (v6.1.5)
 
-## Criteria Acceptence Commit
+## Getting Started
 
-Dikarenakan kebijakan DPE yang mengharuskan developer melakukan unit testing terhadap code agar menjaga kualitas produk. berikut kriteria yang
-sudah digunakan dalam husky repo ini : 
+1. **Clone the repository:**
 
-- Components (branches: 40, statements: 40)
-- Global: keseluruhan page dan component yang ada (branches: 20, functions: 20, lines: 20, statements: 20)
-- Pesan commit disesuaikan dengan nomor tiket yang terdapat pada JIRA (supaya keliatan progressnya)
+   ```bash
+   git clone https://github.com/your-username/your-repo-name.git
+   cd your-repo-name
+   ```
+2. **Install dependencies:**
 
-## Sekian dan terima kasih (semangat mengerjakan tugas yang tiada akhir wkwkwk)
+   ```bash
+   npm install
+   ```
+3. **Run the development server:**
+
+   ```bash
+   npm run dev
+   ```
+
+Your app will be available at http://localhost:3000.
+
+## Scripts
+
+- `dev`: Start the development server using Next.js.
+- `build`: Build the production-ready application using Next.js.
+- `start`: Start the production server using Next.js.
+- `lint`: Run ESLint to lint your code.
+- `clean`: Clean the build artifacts (.next and out directories) using rimraf.
+- `test`: Run Jest tests in watch mode.
+- `test:ci`: Run Jest tests in CI mode with coverage.
+- `prepare`: Install Husky hooks.
+
+## Testing
+
+This project uses Jest for testing along with @testing-library/react and @testing-library/jest-dom. Run tests using:
+
+```bash
+npm run test
+```
