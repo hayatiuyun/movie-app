@@ -157,6 +157,10 @@ const typography = {
 
 const theme = createTheme({
   typography,
+  zIndex: {
+    appBar: 1251,
+    modal: 1250,
+  },
   palette: {
     mode: 'light',
     primary: themeConstants.primary,

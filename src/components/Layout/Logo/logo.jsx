@@ -7,12 +7,15 @@ const Logo = ({ onClick, variant = 'primary', size = 'md' }) => {
     <Box
       onClick={onClick}
       sx={{
-        ...(size === 'md' && { height: '63px', width: '155px' }),
+        ...(size === 'md' && { height: {xs: "36px", md: '48px'}, width: {xs: "19.73px", md: '119.11px'} }),
         ...(size === 'sm' && { height: '48px', width: '120px' }),
         position: 'relative',
+        zIndex: "appBar"
       }}
     >
-      <Image src='/logo.svg' fill={true} alt='' />
+      <Image src='/logo.svg' fill={true} alt='' className='hidden md:block' />
+      <Image src='/netflix-logo-mobile.png' fill={true} alt='' className='block md:hidden' />
+
     </Box>
   );
 };

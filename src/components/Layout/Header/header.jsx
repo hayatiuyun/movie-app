@@ -5,38 +5,40 @@ import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import IconButton from '@mui/material/IconButton'
 import { Logo } from '@/components/Layout/Logo'
-import { Navigation, AuthNavigation } from '@/components/Layout/Navigation'
+import { Navigation, SearchMenu } from '@/components/Layout/Navigation'
 import { Menu, Close } from '@mui/icons-material'
+import Link from 'next/link';
 
 const Header = () => {
   const [visibleMenu, setVisibleMenu] = useState(false)
 
   return (
     <Box data-testid="header">
-      <Container sx={{ py: { xs: 2, md: 1, zIndex: 50}}} maxWidth="xl" >
+      <Container sx={{ py: { xs: 2, md: 1, zIndex: "appBar"}}} maxWidth="xl" >
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <Link href="/">
           <Logo />
-          <Box sx={{ ml: 'auto', display: { xs: 'inline-flex', lg: 'none' } }}>
-            <IconButton data-testid="menu-button" onClick={() => setVisibleMenu(!visibleMenu)}>
+          </Link>
+          <Box sx={{ ml: 'auto', display: { xs: 'inline-flex', lg: 'none', gap:4 } }}>
+          <SearchMenu />
+            <IconButton color='primary' data-testid="menu-button" onClick={() => setVisibleMenu(!visibleMenu)}>
               <Menu />
             </IconButton>
           </Box>
           <Box
-          
             sx={{
               width: '100%',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
               flexDirection: { xs: 'column', lg: 'row' },
-
               transition: (theme) => theme.transitions.create(['top']),
               py: {xs: 6, lg:2},
-              backgroundColor: 'background.black',
               zIndex: {xs: 'appBar', lg: "1"},
               position: {xs: "fixed", lg: "initial"},
               height: { xs: '100vh', lg: 'auto' },
               top: visibleMenu ? 0 : '-120vh',
+              bgcolor: visibleMenu ? "#000" : "transparent",
               left: 0,
             }}
           >
@@ -44,10 +46,13 @@ const Header = () => {
             <Box sx={{width: {lg: 3, xl: 5}}} /> {/** Magic space*/}
             <Navigation />
             </Box>
-            <AuthNavigation />
+            <Box sx={{display: {lg: "block", xs: "none"}}}>
+            <SearchMenu />
+            </Box>
             {visibleMenu && (
               <IconButton
               data-testid="menu" 
+              color='primary'
                 sx={{
                   position: 'fixed',
                   top: 10,

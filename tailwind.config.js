@@ -29,7 +29,7 @@ module.exports = {
         // mono: ['var(--font-roboto-mono)'],
       },
       colors: {
-        black: "#393939",
+        black: "#000",
         primary: {
           light: "#ffeaed",
           DEFAULT: "#E50914",
@@ -40,7 +40,7 @@ module.exports = {
           200: "#FBC5A7",
           300: "#FAA77A",
           400: "#DD5409",
-          500: "##E50914",
+          500: "#E50914",
           600: "#C5571B",
           700: "#944114",
           800: "#622C03",

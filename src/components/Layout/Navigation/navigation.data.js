@@ -9,11 +9,11 @@ export const navigations = [
   },
   {
     label: 'Movie',
-    path: '/tv', // '/',
+    path: '/movie', // '/',
   },
   {
     label: 'New & Popular',
-    path: '/tv', // '/',
+    path: '/popular', // '/',
   },
 
 ];

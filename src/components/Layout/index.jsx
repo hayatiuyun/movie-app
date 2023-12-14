@@ -4,11 +4,11 @@ import Box from '@mui/material/Box'
 import { Footer } from '@/components/Layout/Footer'
 import { Header } from '@/components/Layout/Header'
 
-const LayoutComponent  = ({ children }) => {
+const LayoutComponent  = ({ children, dataTestId = "main" }) => {
   return (
-    <Box data-testid="main" component="main" className='w-full'>
+    <Box data-testid={dataTestId} component="main" className='w-full'>
       <Header />
-      <Box sx={{minHeight: "100vh", width: "100%"}}>
+      <Box sx={{minHeight: {xs:"100vh", md: "100vh"}, width: "100%"}}>
       {children}
       </Box>
       <Footer />
