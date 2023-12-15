@@ -33,12 +33,13 @@ module.exports = {
     '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
     '^./global.js$': '<rootDir>/__mocks__/./global.js', // Mock the global.js import
     '^./global.js$': '<rootDir>/__mocks__/global.js',
+    "^@splidejs/react-splide/css$": "<rootDir>/__mocks__/styleMock.js",
+    "^@splidejs/react-splide/css/core$": "<rootDir>/__mocks__/styleMock.js",
     // Handle CSS imports (without CSS modules)
     // '/^.+\\.(css|sass|scss)$': '<rootDir>/__mocks__/styleMock.js',
     '^__mocks__/(.*)$': '<rootDir>/__mocks__/$1',
     // '\\.(css|less)$': '<rootDir>/__mocks__/styleMock.js',
     '\\.svg$': '<rootDir>/__mocks__/svg.js',
-    '\\.json$': '<rootDir>/__mocks__/lottie/hero.js',
     // Handle image imports
     // https://jestjs.io/docs/webpack#handling-static-assets
     '^.+\\.(png|jpg|jpeg|gif|webp|avif|ico|bmp|svg)$/i': `<rootDir>/__mocks__/fileMock.js`,

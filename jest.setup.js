@@ -1,6 +1,7 @@
 // Learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom'
-
+import register from 'ignore-styles';
+register(['.css', '.sass', '.scss']);
 jest.mock('@mui/material', () => {
     const originalModule = jest.requireActual('@mui/material');
     return {
@@ -17,6 +18,27 @@ jest.mock('@mui/material', () => {
         useMediaQuery: jest.fn().mockReturnValue(true), // Mock always matching media query
     };
 });
+
+jest.mock('next/image', () => ({
+    __esModule: true,
+    default: (props) => {
+      return <img {...props} />
+    },
+  }))
+
+  Object.defineProperty(window, 'matchMedia', {
+    writable: true,
+    value: jest.fn().mockImplementation(query => ({
+      matches: false,
+      media: query,
+      onchange: null,
+      addListener: jest.fn(), // Deprecated
+      removeListener: jest.fn(), // Deprecated
+      addEventListener: jest.fn(),
+      removeEventListener: jest.fn(),
+      dispatchEvent: jest.fn(),
+    })),
+  });
 
 jest.mock('next/navigation', () => {
     const actual = jest.requireActual("next/navigation");

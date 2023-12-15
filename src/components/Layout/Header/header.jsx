@@ -5,7 +5,7 @@ import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import IconButton from '@mui/material/IconButton'
 import { Logo } from '@/components/Layout/Logo'
-import { Navigation, SearchMenu } from '@/components/Layout/Navigation'
+import { SearchMenu } from '@/components/Layout/Navigation'
 import { Menu, Close } from '@mui/icons-material'
 import Link from 'next/link';
 
@@ -21,9 +21,6 @@ const Header = () => {
           </Link>
           <Box sx={{ ml: 'auto', display: { xs: 'inline-flex', lg: 'none', gap:4 } }}>
           <SearchMenu />
-            {/* <IconButton color='primary' data-testid="menu-button" onClick={() => setVisibleMenu(!visibleMenu)}>
-              <Menu />
-            </IconButton> */}
           </Box>
           <Box
             sx={{

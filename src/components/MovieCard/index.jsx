@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 const MovieCard = ({
   poster_path,
-  title,
+  title = "",
   release_date,
   original_language,
   id,
@@ -19,6 +19,7 @@ const MovieCard = ({
             sizes='100vw'
             className='h-auto !max-h-96 w-full'
             width={500}
+            alt={title}
             height={300}
           />
         </div>

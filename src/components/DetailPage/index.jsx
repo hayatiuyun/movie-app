@@ -48,10 +48,9 @@ const DetailPageComponent = ({ params, dataTestId = "detail-page-component" }) =
             <ImageWithFallback
               src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/original/${details.poster_path}`}
               sizes='100vw'
-              className='h-auto !max-h-96 w-full rounded-2xl'
+              className='h-auto !max-h-96 w-full rounded-2xl object-center'
               width={700}
               height={420}
-              objectPosition="center"
             />
           </div>
           <div className='w-full flex flex-col gap-4 bg-tertiary-900 md:bg-inherit p-4'>

@@ -1,11 +1,11 @@
 'use client';
 import { Box, Button, Divider, ButtonGroup } from '@mui/material';
 import SearchButton from '../Layout/Navigation/SearchBar/SearchButton';
-import MovieButtonGroup from '../ButtonGroupComponent';
 import useListMovie from '@/hook/useListMovie';
 import MovieList from '../MovieList';
 import Dropdown from '../DropdownFilter';
 import Loading from '../LoadingComponent';
+import { SearchOffTwoTone } from '@mui/icons-material';
 
 export default function MainPage() {
   const categories = [
@@ -59,9 +59,12 @@ export default function MainPage() {
         <SearchButton big />
       </div>
       <Divider className='bg-tertiary-400 text-tertiary-400' />
-      <div className='flex flex-row items-center justify-between lg:justify-end'>
+      <div
+        data-testid='movie-list'
+        className='flex flex-row items-center justify-between lg:justify-end'
+      >
         <h4 className='mr-5 text-lg text-tertiary-400'>Filter by | </h4>
-        
+
         <Dropdown
           className='cursor-pointer'
           value={value}
@@ -69,19 +72,24 @@ export default function MainPage() {
           handleChangeValue={handleChangeValue}
         />
       </div>
-
-      {(isLoading && totalPages > 1) || data ? (
+      {isLoading && !data.length && (
+        <div className='flex w-full items-center justify-center'>
+          <div className='mx-auto flex w-full flex-col items-center justify-center'>
+            <SearchOffTwoTone className='!h-auto !w-[15vw] text-tertiary-600' />
+            <h3 className='text-tertiary-500'>We're working on it</h3>
+          </div>
+        </div>
+      )}
+      {(isLoading && totalPages > 1) || data.length ? (
         // Check if data exists and is not empty before rendering MovieList
-        data && data.length > 0 && (
-          <MovieList
-            data={data}
-            isLoading=  {isLoading}
-            page={page}
-            totalPages={totalPages}
-            onLoadMore={handleLoadMore}
-            error={error}
-          />
-        )
+        <MovieList
+          data={data}
+          isLoading={isLoading}
+          page={page}
+          totalPages={totalPages}
+          onLoadMore={handleLoadMore}
+          error={error}
+        />
       ) : (
         <div className='flex w-full items-center justify-center'>
           <Loading />

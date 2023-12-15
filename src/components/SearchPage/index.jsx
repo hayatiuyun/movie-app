@@ -27,7 +27,7 @@ const SearchPage = ({ params }) => {
     >
       <h1 className='font-semibold'>
         Show result for movie{' '}
-        <span className='text-primary'>"{params.query}"</span>
+        <span className='text-primary'>"{params?.query}"</span>
       </h1>
       <MovieList
         data={data}
