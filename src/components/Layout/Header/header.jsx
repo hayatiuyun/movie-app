@@ -21,9 +21,9 @@ const Header = () => {
           </Link>
           <Box sx={{ ml: 'auto', display: { xs: 'inline-flex', lg: 'none', gap:4 } }}>
           <SearchMenu />
-            <IconButton color='primary' data-testid="menu-button" onClick={() => setVisibleMenu(!visibleMenu)}>
+            {/* <IconButton color='primary' data-testid="menu-button" onClick={() => setVisibleMenu(!visibleMenu)}>
               <Menu />
-            </IconButton>
+            </IconButton> */}
           </Box>
           <Box
             sx={{
@@ -44,7 +44,7 @@ const Header = () => {
           >
             <Box sx={{display: 'flex', flexDirection: "row", gap:"2rem"}}>
             <Box sx={{width: {lg: 3, xl: 5}}} /> {/** Magic space*/}
-            <Navigation />
+            {/* <Navigation /> */}
             </Box>
             <Box sx={{display: {lg: "block", xs: "none"}}}>
             <SearchMenu />

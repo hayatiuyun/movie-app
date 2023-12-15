@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import useDetailPage from '@/hook/useDetailPage';
 import Loading from '../LoadingComponent';
 import Image from 'next/image';
+import Credits from './Credit';
 
 const DetailPageComponent = ({ params, dataTestId = "detail-page-component" }) => {
   const router = useRouter();
@@ -15,7 +16,7 @@ const DetailPageComponent = ({ params, dataTestId = "detail-page-component" }) =
     router.back();
   };
 
-  if (isLoading) {
+   if (isLoading) {
     return <Loading dataTestId={dataTestId} />;
   }
 
@@ -34,7 +35,7 @@ const DetailPageComponent = ({ params, dataTestId = "detail-page-component" }) =
   }
 
   return (
-    <div data-testid={dataTestId} className='flex w-full flex-col gap-5 overflow-hidden absolute'>
+    <div data-testid={dataTestId} className='flex w-full flex-col gap-5 overflow-hidden'>
       <div className='relative left-0 top-0 h-auto min-h-[100vh] w-full bg-tertiary-800 bg-gradient-to-b from-black to-50% md:p-4 pt-10 flex flex-col gap-8'>
         <div className='relative md:mx-auto flex w-full h-full flex-col items-center justify-center gap-5 py-5 md:flex-row md:justify-start lg:w-[85%] 3xl:w-[70%] 4xl:w-[50%] 5xl:w-[35%]'>
           <div className='inline-flex w-full items-center gap-1 md:hidden ml-4 md:ml-0'>
@@ -80,6 +81,7 @@ const DetailPageComponent = ({ params, dataTestId = "detail-page-component" }) =
           </div>
         </div>
         <Divider className="text-tertiary-400 bg-tertiary-400"/>
+        <Credits />
       </div>
     </div>
   );
