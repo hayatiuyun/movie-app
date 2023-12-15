@@ -21,28 +21,32 @@ const StyledButton = styled(Button)(({ theme, active }) => ({
   },
 }));
 
-const MovieButtonGroup = ({ categories = [], onChangeTab }) => {
-  const [activeIndex, setActiveIndex] = useState(0);
+const MovieButtonGroup = ({ categories = [], onChangeTab, sx }) => {
+  const [activeValue, setActiveValue] = useState("now_playing");
 
-  const handleButtonClick = (index) => {
-    setActiveIndex(index);
+  const handleButtonClick = (value) => {
+    setActiveValue(value);
+    onChangeTab(value)
   };
 
   return (
     <StyledButtonGroup
       sx={{
         gap: 2,
+        ...sx
       }}
       variant='contained'
       aria-label='movie category buttons'
+      defaultValue="now_playing"
     >
-      {categories.map((category, index) => (
+      {categories.map(({label, value}) => (
         <StyledButton
-          key={index}
-          onClick={() => handleButtonClick(index)}
-          active={activeIndex === index}
+          key={value}
+          value={value}
+          onClick={() => handleButtonClick(value)}
+          active={activeValue === value}
         >
-          {category}
+          {label}
         </StyledButton>
       ))}
     </StyledButtonGroup>

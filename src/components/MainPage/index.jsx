@@ -2,9 +2,41 @@
 import { Box, Button, Divider, ButtonGroup } from '@mui/material';
 import SearchButton from '../Layout/Navigation/SearchBar/SearchButton';
 import MovieButtonGroup from '../ButtonGroupComponent';
+import useListMovie from '@/hook/useListMovie';
+import MovieList from '../MovieList';
+import Dropdown from '../DropdownFilter';
+import Loading from '../LoadingComponent';
 
 export default function MainPage() {
-    const categories = ['Now Playing', 'Popular', 'Top Rated', 'Upcoming'];
+  const categories = [
+    { label: 'Now Playing', value: 'now_playing' },
+    { label: 'Popular', value: 'popular' },
+    { label: 'Top Rated', value: 'top_rated' },
+    { label: 'Upcoming', value: 'upcoming' },
+  ];
+
+  const {
+    data,
+    isLoading,
+    handleChangeValue,
+    error,
+    page,
+    setPage,
+    value,
+    totalPages,
+    mutate,
+  } = useListMovie();
+
+  const handleLoadMore = () => {
+    console.log('page', page);
+    if (page < totalPages) {
+      setPage((pg) => pg + 1);
+      setTimeout(() => {
+        mutate();
+      }, 500);
+    }
+  };
+
   return (
     <Box
       sx={{
@@ -15,20 +47,46 @@ export default function MainPage() {
         gap: 5,
       }}
     >
-        <div className="bg-[url('/bg-hero.png')] bg-cover bg-bottom bg-blend-darken min-h-[40vh] h-full flex flex-col justify-end gap-5 px-10 pt-4">
-            <div className='flex flex-col gap-5'>
-                <h1 className='text-4xl font-extrabold w-min px-2 bg-white text-tertiary-900'>Welcome<span className='text-primary text-5xl'>.</span></h1>
-                <p className='text-2xl'>Millions of movies, TV shows and people to discover. Explore now.</p>
-            </div>
-            <SearchButton big />
+      <div className="flex h-full min-h-[40vh] flex-col justify-end gap-5 bg-[url('/bg-hero.png')] bg-cover bg-bottom px-10 pt-4 bg-blend-darken">
+        <div className='flex flex-col gap-5'>
+          <h1 className='w-min bg-white px-2 text-4xl font-extrabold text-tertiary-900'>
+            Welcome<span className='text-5xl text-primary'>.</span>
+          </h1>
+          <p className='text-2xl'>
+            Millions of movies, TV shows and people to discover. Explore now.
+          </p>
         </div>
-        <Divider className="text-tertiary-400 bg-tertiary-400"/>
-        <MovieButtonGroup categories={categories} variant='contained' sx={{gap: 2}}>
-            <Button className='m-4 !rounded-xl'>Now Playing</Button>
-            <Button className='m-4 !rounded-xl'>Upcoming</Button>
-            <Button className='m-4 !rounded-xl'>Now Playing</Button>
-            <Button className='m-4 !rounded-xl'>Upcoming</Button>
-        </MovieButtonGroup>
+        <SearchButton big />
+      </div>
+      <Divider className='bg-tertiary-400 text-tertiary-400' />
+      <div className='flex flex-row items-center justify-between lg:justify-end'>
+        <h4 className='mr-5 text-lg text-tertiary-400'>Filter by | </h4>
+        
+        <Dropdown
+          className='cursor-pointer'
+          value={value}
+          categories={categories}
+          handleChangeValue={handleChangeValue}
+        />
+      </div>
+
+      {(isLoading && totalPages > 1) || data ? (
+        // Check if data exists and is not empty before rendering MovieList
+        data && data.length > 0 && (
+          <MovieList
+            data={data}
+            isLoading=  {isLoading}
+            page={page}
+            totalPages={totalPages}
+            onLoadMore={handleLoadMore}
+            error={error}
+          />
+        )
+      ) : (
+        <div className='flex w-full items-center justify-center'>
+          <Loading />
+        </div>
+      )}
     </Box>
   );
 }
